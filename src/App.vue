@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1 style="text-align: center;">Simple CRUD App built with Vue</h1>
     <ProductAdd @add:product="addProduct" />
     <ProductList
       @update:product="updateProduct"
@@ -20,43 +21,48 @@ export default {
   },
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          categoryId: 1,
-          productName: "Laptop",
-          quantityPerUnit: "HP Laptop",
-          unitPrice: 5000,
-          unitsInStock: 2
-        },
-        {
-          id: 2,
-          categoryId: 1,
-          productName: "Mouse",
-          quantityPerUnit: "HP Mouse",
-          unitPrice: 50,
-          unitsInStock: 2
-        },
-        {
-          id: 3,
-          categoryId: 2,
-          productName: "Keyboard",
-          quantityPerUnit: "HP Keyboard",
-          unitPrice: 500,
-          unitsInStock: 2
-        }
-      ]
+      products: []
     };
   },
+  mounted() {
+    this.getProducts();
+  },
   methods: {
-    deleteProduct(product) {
-      this.products = this.products.filter(
-        productToFilter => productToFilter.id !== product.id
+    async getProducts() {
+      const result = await fetch("http://localhost:3000/products");
+      const data = await result.json();
+      this.products = data;
+    },
+    async deleteProduct(product) {
+      await fetch("http://localhost:3000/products/" + product.id, {
+        method: "DELETE"
+      });
+      this.getProducts();
+      // this.products = this.products.filter(
+      //   productToFilter => productToFilter.id !== product.id
+      // );
+    },
+    async updateProduct(product) {
+      const result = await fetch("http://localhost:3000/products/" + product.id, {
+        method: "PUT",
+        body: JSON.stringify(product),
+        headers: { "Content-Type": "application/json" }
+      });
+
+      const updatedProduct = await result.json();
+
+      this.products = this.products.map(product =>
+        product.id === updatedProduct.id ? updatedProduct : product
       );
     },
-    updateProduct() {},
-    addProduct(product) {
-      const newProduct = { ...product };
+    async addProduct(product) {
+      const result = await fetch("http://localhost:3000/products", {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: { "Content-Type": "application/json" }
+      });
+
+      const newProduct = await result.json();
       this.products = [...this.products, newProduct];
     }
   }

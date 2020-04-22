@@ -1,34 +1,30 @@
 <template>
-  <div id="addForm">
+  <div id="list">
     <form @submit.prevent="handleAdd">
       <div class="form-group">
-        <label for="id">ID</label>
-        <input v-model="product.id" type="text" class="form-group" id="id" />
-      </div>
-      <div class="form-group">
         <label for="categoryId">Category</label>
-        <input v-model="product.categoryId" type="text" class="form-group" id="categoryId" />
+        <input v-model="product.categoryId" type="text" class="form-control" id="categoryId" />
       </div>
       <div class="form-group">
         <label for="productName">Product Name</label>
-        <input v-model="product.productName" type="text" class="form-group" id="productName" />
+        <input v-model="product.productName" type="text" class="form-control" id="productName" />
       </div>
       <div class="form-group">
-        <label for="quantityPerUnit">Quantity Per Unit</label>
+        <label for="quantityPerUnit">Description</label>
         <input
           v-model="product.quantityPerUnit"
           type="text"
-          class="form-group"
+          class="form-control"
           id="quantityPerUnit"
         />
       </div>
       <div class="form-group">
         <label for="unitPrice">Unit Price</label>
-        <input v-model="product.unitPrice" type="text" class="form-group" id="unitPrice" />
+        <input v-model="product.unitPrice" type="text" class="form-control" id="unitPrice" />
       </div>
       <div class="form-group">
         <label for="unitsInStock">Stock #</label>
-        <input v-model="product.unitsInStock" type="text" class="form-group" id="unitsInStock" />
+        <input v-model="product.unitsInStock" type="text" class="form-control" id="unitsInStock" />
       </div>
       <button type="submit" class="btn btn-sm btn-success">Add</button>
     </form>
@@ -40,7 +36,6 @@ export default {
   data() {
     return {
       product: {
-        id: "",
         categoryId: "",
         productName: "",
         quantityPerUnit: "",
@@ -57,7 +52,8 @@ export default {
 };
 </script>
 <style scoped>
-#addForm {
-  margin: 100px;
+#list {
+  margin: 24px;
+  max-width: 50%;
 }
 </style>
