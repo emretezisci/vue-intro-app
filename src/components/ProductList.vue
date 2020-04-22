@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="productList">
     <p v-if="products.length==0">Product list is empty!</p>
     <table v-else class="table">
       <thead>
@@ -22,11 +22,11 @@
           <td v-if="updateId===product.id">
             <input v-model="product.productName" type="text" class="form-control" id="productName" />
           </td>
-          <td v-else>{{product.id}}</td>
+          <td v-else>{{product.productName}}</td>
           <td v-if="updateId===product.id">
             <input v-model="product.categoryId" type="text" class="form-control" id="categoryId" />
           </td>
-          <td v-else>{{product.id}}</td>
+          <td v-else>{{product.categoryId}}</td>
           <td v-if="updateId===product.id">
             <input
               v-model="product.quantityPerUnit"
@@ -35,11 +35,11 @@
               id="quantityPerUnit"
             />
           </td>
-          <td v-else>{{product.id}}</td>
+          <td v-else>{{product.quantityPerUnit}}</td>
           <td v-if="updateId===product.id">
             <input v-model="product.unitPrice" type="text" class="form-control" id="unitPrice" />
           </td>
-          <td v-else>{{product.id}}</td>
+          <td v-else>{{product.iunitPriced}}</td>
           <td v-if="updateId===product.id">
             <input
               v-model="product.unitsInStock"
@@ -48,15 +48,15 @@
               id="unitsInStock"
             />
           </td>
-          <td v-else>{{product.id}}</td>
+          <td v-else>{{product.unitsInStock}}</td>
 
           <td v-if="updateId!==product.id">
-            <button btn btn-small btn-primary @click="handleUpdate(product)">Update</button>
-            <button btn btn-small btn-danger @click="handleDelete(product)">Delete</button>
+            <button class="btn btn-small btn-primary" @click="handleUpdate(product)">Update</button>
+            <button class="btn btn-small btn-danger" @click="handleDelete(product)">Delete</button>
           </td>
           <td v-else>
-            <button btn btn-small btn-primary @click="handleSave(product)">Save</button>
-            <button btn btn-small btn-danger @click="updateId=null">Cancel</button>
+            <button class="btn btn-small btn-primary" @click="handleSave(product)">Save</button>
+            <button class="btn btn-small btn-danger" @click="updateId=null">Cancel</button>
           </td>
         </tr>
       </tbody>
@@ -89,4 +89,7 @@ export default {
 </script>
 
 <style scoped>
+#productList {
+  margin: 100px;
+}
 </style>
