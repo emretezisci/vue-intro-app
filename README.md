@@ -1,4 +1,4 @@
-# vue-intro-app
+# Simple CRUD app built with Vue
 
 ## Project setup
 ```

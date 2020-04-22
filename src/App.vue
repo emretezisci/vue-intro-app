@@ -1,19 +1,47 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ProductList :products = "products"></ProductList>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import ProductList from "./components/ProductList.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    ProductList
+  },
+  data() {
+    return {
+      products: [
+        {
+          id: 1,
+          categoryId: 1,
+          productName: "Laptop",
+          quantityPerUnit: "HP Laptop",
+          unitPrice: 5000,
+          unitsInStock: 2
+        },
+        {
+          id: 2,
+          categoryId: 1,
+          productName: "Mouse",
+          quantityPerUnit: "HP Mouse",
+          unitPrice: 50,
+          unitsInStock: 2
+        },
+        {
+          id: 3,
+          categoryId: 2,
+          productName: "Keyboard",
+          quantityPerUnit: "HP Keyboard",
+          unitPrice: 500,
+          unitsInStock: 2
+        }
+      ]
+    };
   }
-}
+};
 </script>
 
 <style>
