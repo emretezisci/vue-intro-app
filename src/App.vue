@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <ProductList :products = "products"></ProductList>
+    <ProductList
+      @update:product="updateProduct"
+      @delete:product="deleteProduct"
+      :products="products"
+    ></ProductList>
   </div>
 </template>
 
 <script>
 import ProductList from "./components/ProductList.vue";
+
 export default {
   name: "App",
   components: {
@@ -40,6 +45,14 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    deleteProduct(product) {
+      this.products = this.products.filter(
+        productToFilter => productToFilter.id !== product.id
+      );
+    },
+    updateProduct() {}
   }
 };
 </script>
